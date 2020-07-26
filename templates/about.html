@@ -2,9 +2,7 @@
 
 
 
-{% for number in list_of_numbers %}
-   <p>{{ number }}</p>
-{% endfor %}
+
 
 
 <h2>{{ page_title }}</h2>
@@ -23,9 +21,14 @@
 
 {% for member in company %}
 
+
+
 <div class="row featurette">
+
+{% if loop.index % 2 != 0 %}
+
   <div class="col-md-7">
-    <h3>{{ member.name }}</h3>
+    <h3>{{ loop.index }} {{ member.name }}</h3>
     <p>
       {{ member.description }}
     </p>
@@ -36,8 +39,28 @@
       alt=""
     />
   </div>
+  {% else %}
+ <div class="col-md-5">
+    <img class="featurette-image img-responsive"
+      src="{{ member.image_source }}"
+      alt=""
+    />
+  </div>
+  <div class="col-md-7">
+    <h3>{{ loop.index }} {{ member.name }}</h3>
+    <p>
+      {{ member.description }}
+    </p>
+  </div>
+  {% endif %}
 </div>
+
+{% if loop.index != 13 %}
+
 <hr class="featurette-divider">
+
+{% endif %}
+
 {% endfor %}
 
 {% endblock %}
